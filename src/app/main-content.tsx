@@ -12,7 +12,7 @@ import { ChatInterface } from "@/components/chat/ChatInterface";
 import { FileTree } from "@/components/editor/FileTree";
 import { CodeEditor } from "@/components/editor/CodeEditor";
 import { PreviewFrame } from "@/components/preview/PreviewFrame";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { HeaderActions } from "@/components/HeaderActions";
 // Card component import removed
 
@@ -79,11 +79,12 @@ export function MainContent({ user, project }: MainContentProps) {
 
                 {/* Content Area */}
                 <div className="flex-1 overflow-hidden bg-neutral-50">
-                  {activeView === "preview" ? (
+                  <TabsContent value="preview" className="h-full m-0 data-[state=inactive]:hidden">
                     <div className="h-full bg-white">
                       <PreviewFrame />
                     </div>
-                  ) : (
+                  </TabsContent>
+                  <TabsContent value="code" className="h-full m-0 data-[state=inactive]:hidden">
                     <ResizablePanelGroup
                       direction="horizontal"
                       className="h-full"
@@ -108,7 +109,7 @@ export function MainContent({ user, project }: MainContentProps) {
                         </div>
                       </ResizablePanel>
                     </ResizablePanelGroup>
-                  )}
+                  </TabsContent>
                 </div>
               </div>
             </ResizablePanel>
